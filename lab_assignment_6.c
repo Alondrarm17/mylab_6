@@ -1,8 +1,36 @@
+// Programmer: Alondra Rodriguez Manzueta
+// COP 3502C: Lab assigment 6
+
 #include <stdio.h>
+#include <stdlib.h>
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+	if (low > high) 
+    {
+        return -1;
+    }
+  
+    // Calculate middle index
+    int mid = low + ( high - low) / 2;
+  
+    // If the middle element is the value we are looking for, return its index
+    if (numbers[mid] == value) 
+    {
+        return mid;
+    }
+  
+    // If the middle element is greater than the value, search in the left half of the array
+    else if (numbers[mid] > value) 
+    {
+        return search(numbers, low, mid - 1, value);
+    }
+    else
+    {
+        // If the middle element is smaller than the value, search in the right half of the array
+        return search(numbers, mid + 1, high, value);
+
+    }
 }
 
 void printArray(int numbers[], int sz)
